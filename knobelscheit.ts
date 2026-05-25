@@ -18,4 +18,8 @@ export class Knobelscheit {
         this.flipped.add(n);
     }
   }
+
+  isWon(): boolean {
+    return this.flipped.size === 9;
+  }
 }
