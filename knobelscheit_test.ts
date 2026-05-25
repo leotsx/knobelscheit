@@ -33,3 +33,28 @@ Deno.test("isWon: gibt true zurüc wenn alle zahlen umgeklappt sind", () => {
     brett.flip([1, 2, 3, 4, 5, 6, 7, 8, 9]);
     assert(brett.isWon())
 })
+
+Deno.test("findCombinations: findet Einzelzahl als kombination", () =>{
+    const brett = new Knobelscheit
+    const result = brett.findCombinations(5);
+    assert(result.some((k) => JSON.stringify(k) === JSON.stringify([5])))
+}) 
+
+Deno.test("findCombinations: findet kombination aus zwei Zahlen", () =>{
+    const brett = new Knobelscheit
+    const result = brett.findCombinations(6);
+    assert(result.some((k) => JSON.stringify(k) === JSON.stringify([2,4])))
+})
+
+Deno.test("findCombination: findet mehrere kombinationen für eine Zahl", () =>{
+    const brett = new Knobelscheit
+    const result = brett.findCombinations(7);
+    assert(result.length > 1)
+})
+
+Deno.test("findCombination: findet keine kombinationen für eine Zahl", () =>{
+    const brett = new Knobelscheit
+    brett.flip([1, 2, 3, 4, 5, 6, 7, 8, 9])
+    const result = brett.findCombinations(3);
+    assertEquals(result.length, 0)
+})
